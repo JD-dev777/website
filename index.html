@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BotFlow | Discord Bot Control Center</title>
+    <meta
+      name="description"
+      content="A modern Discord bot configuration website where users can easily customize bot settings, automate moderation, and export their configuration."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar">
+        <div class="brand-wrap">
+          <div class="brand-icon">B</div>
+          <div>
+            <p class="eyebrow">BotFlow</p>
+            <h1>Discord Bot Control Center</h1>
+          </div>
+        </div>
+        <nav class="top-actions">
+          <button class="ghost-btn" type="button">Docs</button>
+          <button class="primary-btn" type="button">Deploy</button>
+        </nav>
+      </header>
+
+      <main class="dashboard">
+        <section class="hero">
+          <div class="hero-copy">
+            <span class="badge">Easy setup</span>
+            <h2>Configure your Discord bot in minutes.</h2>
+            <p>
+              Manage moderation, welcome flows, automation, and server settings from a streamlined dashboard built for non-technical admins.
+            </p>
+            <div class="hero-actions">
+              <button class="primary-btn" type="button">Start configuring</button>
+              <button class="ghost-btn" type="button">View demo</button>
+            </div>
+          </div>
+          <div class="hero-card">
+            <div class="status-row">
+              <span class="pulse"></span>
+              <span>Bot online</span>
+            </div>
+            <div class="server-preview">
+              <div class="avatar">B</div>
+              <div>
+                <strong>BotFlow</strong>
+                <small>Guild automation</small>
+              </div>
+            </div>
+            <ul class="stat-grid">
+              <li>
+                <strong>2.4k</strong>
+                <span>Commands used</span>
+              </li>
+              <li>
+                <strong>99.9%</strong>
+                <span>Uptime</span>
+              </li>
+              <li>
+                <strong>24/7</strong>
+                <span>Monitoring</span>
+              </li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="content-grid">
+          <form id="bot-form" class="settings-panel">
+            <div class="panel-header">
+              <h3>Basic bot settings</h3>
+            </div>
+
+            <div class="field-group">
+              <label for="botName">Bot name</label>
+              <input id="botName" name="botName" type="text" value="BotFlow" />
+            </div>
+
+            <div class="field-group inline">
+              <div>
+                <label for="prefix">Command prefix</label>
+                <input id="prefix" name="prefix" type="text" value="!" />
+              </div>
+              <div>
+                <label for="lang">Language</label>
+                <select id="lang" name="lang">
+                  <option>English</option>
+                  <option>Spanish</option>
+                  <option>French</option>
+                  <option>German</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <label for="commandChannel">Command channel</label>
+              <input id="commandChannel" name="commandChannel" type="text" value="#bot-commands" />
+            </div>
+
+            <div class="field-group">
+              <label for="welcomeMessage">Welcome message</label>
+              <textarea id="welcomeMessage" name="welcomeMessage">Welcome to the server! Type !help to get started.</textarea>
+            </div>
+
+            <div class="panel-header small">
+              <h3>Automation & moderation</h3>
+            </div>
+
+            <div class="toggle-grid">
+              <label class="switch">
+                <input type="checkbox" name="autoMod" checked />
+                <span>Auto moderation</span>
+              </label>
+              <label class="switch">
+                <input type="checkbox" name="welcomeEnabled" checked />
+                <span>Welcome messages</span>
+              </label>
+              <label class="switch">
+                <input type="checkbox" name="logging" checked />
+                <span>Server logging</span>
+              </label>
+              <label class="switch">
+                <input type="checkbox" name="music" />
+                <span>Music controls</span>
+              </label>
+              <label class="switch">
+                <input type="checkbox" name="ticketing" checked />
+                <span>Ticket system</span>
+              </label>
+              <label class="switch">
+                <input type="checkbox" name="developerMode" />
+                <span>Developer mode</span>
+              </label>
+            </div>
+
+            <div class="field-group">
+              <label for="logChannel">Log channel</label>
+              <input id="logChannel" name="logChannel" type="text" value="#bot-logs" />
+            </div>
+
+            <div class="panel-actions">
+              <button class="primary-btn" type="submit">Save configuration</button>
+              <button class="ghost-btn" type="button" id="resetBtn">Reset</button>
+              <button class="outline-btn" type="button" id="exportBtn">Export JSON</button>
+            </div>
+          </form>
+
+          <aside class="preview-panel">
+            <div class="panel-header">
+              <h3>Live preview</h3>
+            </div>
+
+            <div class="status-box success">
+              <span class="dot"></span>
+              <div>
+                <strong>Bot status</strong>
+                <small>Ready to serve</small>
+              </div>
+            </div>
+
+            <div class="preview-card">
+              <div class="mini-header">
+                <div class="mini-avatar">B</div>
+                <div>
+                  <h4 id="previewName">BotFlow</h4>
+                  <span id="previewPrefix">Prefix: !</span>
+                </div>
+              </div>
+
+              <div class="capability-list">
+                <div>
+                  <span>Channel</span>
+                  <strong id="previewChannel">#bot-commands</strong>
+                </div>
+                <div>
+                  <span>Welcome</span>
+                  <strong id="previewWelcome">Enabled</strong>
+                </div>
+                <div>
+                  <span>Moderation</span>
+                  <strong id="previewModeration">Enabled</strong>
+                </div>
+                <div>
+                  <span>Logging</span>
+                  <strong id="previewLogging">#bot-logs</strong>
+                </div>
+              </div>
+            </div>
+
+            <div class="code-panel">
+              <div class="code-header">
+                <span>config.json</span>
+                <button type="button" id="copyBtn">Copy</button>
+              </div>
+              <pre id="configOutput"></pre>
+            </div>
+          </aside>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
